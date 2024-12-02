@@ -15,7 +15,7 @@ read(*,*) nk
 print *, "nk is", nk
 
 !$omp target enter data map(to: x, y)
-!$acc enter data copyin(x, y)
+!$acc enter data copyin(x, y) create(z)
 
 do k = 1, nk
   call test_subrt(x, y, z)

@@ -10,17 +10,17 @@ contains
 
     n = size(x)
 
-    !$omp target
-    !$acc data present(x, y)
+    !$acc data present(x, y, z)
 
+    !$omp target
     !$omp parallel loop
     !$acc kernels
     do i = 1, n
       z(i) = x(i) + y(i)
     enddo
+    !$omp end target
     !$acc end kernels
 
-    !$omp end target
     !$acc end data
 
   end subroutine test_subrt

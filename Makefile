@@ -7,7 +7,7 @@ all: prog_omp prog_acc
 
 #---
 
-prog_omp: omp/prog.o acc/test_mod.o | omp
+prog_omp: omp/prog.o omp/test_mod.o | omp
 	$(FC) $(FCFLAGS) $(FCFLAGS_OMP) -o $@ $^
 
 omp/prog.o: prog.f90 omp/test_mod.mod | omp
@@ -34,6 +34,8 @@ acc/test_mod.o: test_mod.f90 | acc
 
 acc:
 	mkdir -p acc
+
+#---
 
 clean:
 	rm -f prog_omp prog_acc
