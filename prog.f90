@@ -5,12 +5,23 @@ implicit none
 integer, parameter :: n = 10**5
 real :: x(n), y(n), z(n)
 
+integer :: nargs
+character(len=8) :: arg
+
 integer :: k, nk
+
+nargs = command_argument_count()
+print *, nargs
+if (nargs == 0) then
+  print *, "Usage: prog [n], where [n] is the number of iterations."
+  stop
+endif
 
 x(:) = 1.
 y(:) = 2.
 
-read(*,*) nk
+call get_command_argument(1, arg)
+read(arg, *) nk
 
 print *, "nk is", nk
 
