@@ -17,13 +17,13 @@ if (nargs == 0) then
   stop
 endif
 
-x(:) = 1.
-y(:) = 2.
-
 call get_command_argument(1, arg)
 read(arg, *) nk
 
 print *, "nk is", nk
+
+x(:) = 1.
+y(:) = 2.
 
 !$omp target enter data map(to: x, y)
 !$acc enter data copyin(x, y) create(z)
