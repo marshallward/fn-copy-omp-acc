@@ -25,7 +25,7 @@ print *, "nk is", nk
 x(:) = 1.
 y(:) = 2.
 
-!$omp target enter data map(to: x, y)
+!$omp target enter data map(to: x, y) map(alloc: z)
 !$acc enter data copyin(x, y) create(z)
 
 do k = 1, nk
